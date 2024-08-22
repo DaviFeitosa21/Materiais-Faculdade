@@ -14,7 +14,7 @@ int main()
         }
         else 
         {
-            printf("Escolha outro numero,\n");
+            printf("Escolha outro exercicio,\n");
             printf("Digite 0 para sair.\n\n");
         }
         contVezes++;
