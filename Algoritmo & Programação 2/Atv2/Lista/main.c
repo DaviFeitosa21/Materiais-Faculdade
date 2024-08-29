@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+//Atividade 1 e 2
+
 struct bolsa_Valores
 {
     char nome_Companhia[30];
