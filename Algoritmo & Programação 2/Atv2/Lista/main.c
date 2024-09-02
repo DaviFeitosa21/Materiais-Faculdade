@@ -29,7 +29,8 @@ int main()
     bolsa_acao.variacao_Acao = (bolsa_acao.valor_Acao_Atual - bolsa_acao.valor_Acao_Anterior);
 
     printf("\n Informacoes gerais: ");
-    printf("\nNome da companhia: %s \nAtuacao no mercado:%s \nValor atual da acao: %.2f  \nValor anterior da acao: %.2f \nVariacao da acao: %%%.2f", bolsa_acao.nome_Companhia, bolsa_acao.area_Atuacao, bolsa_acao.valor_Acao_Atual, bolsa_acao.valor_Acao_Anterior, bolsa_acao.variacao_Acao);
+    printf("\nNome da companhia: %s \nAtuacao no mercado:%s \nValor atual da acao: %.2f  \nValor anterior da acao: %.2f \nVariacao da acao: %%%.2f", 
+    bolsa_acao.nome_Companhia, bolsa_acao.area_Atuacao, bolsa_acao.valor_Acao_Atual, bolsa_acao.valor_Acao_Anterior, bolsa_acao.variacao_Acao);
 
 }
 
