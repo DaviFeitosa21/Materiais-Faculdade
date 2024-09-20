@@ -78,7 +78,7 @@ int main()
 {
     int opcValida, opcValidaIDConta;
     int codOperacao, verificaConta, verificaContaRecebe;
-    float valorSaque, valorDeposito, valorTrasferencia;
+    float valorSaque, valorDeposito, valorTransferencia;
 
     for (int i = 0; i < 2; i++)
     {
@@ -194,16 +194,17 @@ int main()
                 printf("Digite o ID da conta que recebera o valor da tranferencia:\n");
                 scanf("%d", &verificaContaRecebe);
 
+                printf("Digite o valor da transferencia:\n");
+                scanf("%f", &valorTransferencia);
+
                 for (int i = 0; i < 2; i++)
                 {
-                    if (verificaConta == BANCO[i].id_conta && verificaContaRecebe == BANCO[i].id_conta)
-                    {
-                        printf("Digite o valor da transferencia:\n");
-                        scanf("%f", &valorTrasferencia);
+                    opcValidaIDConta = saldoTranferencia(verificaConta, verificaContaRecebe, valorTransferencia);
 
-                        opcValidaIDConta = saldoTranferencia();
-                    }
-                    
+                    // if(!opcValidaIDConta)
+                    // {
+                    //     printf("Informacao incorreta inserida!");
+                    // }
                 }
             } while (!opcValidaIDConta);
         }
