@@ -27,6 +27,45 @@ float saldoDeposito(float saldo, float valor_deposito)
     return saldo + valor_deposito;
 }
 
+int saldoTranferencia(int id_origem, int id_destino, float valor_transferencia)
+{
+    int idOrigem = 0, idDestino = 0;
+
+    for (int i = 0; i < 2; i++) 
+    {
+        if (BANCO[i].id_conta == idOrigem) 
+        {
+            idOrigem = i;
+        }
+        if (BANCO[i].id_conta == idDestino) 
+        {
+            idDestino = i;
+        }
+
+        if (idOrigem == 0)
+        {
+            printf("Conta de origem nao identificada!");
+            return 0;
+        }
+        if (idDestino == 0)
+        {
+            printf("Conta de destino nao identificada!");
+            return 0;
+        }
+        if (BANCO[idOrigem].saldo_conta < valor_transferencia)
+        {
+            printf("Saldo insuficiente para transferencia!");
+            return 0;
+        }
+
+        BANCO[idOrigem].saldo_conta -= valor_transferencia;
+        BANCO[idDestino].saldo_conta += valor_transferencia;
+
+        printf("Transferencia realizada com sucesso!");
+        return 1;
+    }
+}
+
 void visualizaConta(int id_conta_vz, char nome_proprietario_vz[30], float saldo_atual_conta_vz)
 {
     printf("Conta selecionada:\n");
@@ -38,8 +77,8 @@ void visualizaConta(int id_conta_vz, char nome_proprietario_vz[30], float saldo_
 int main()
 {
     int opcValida, opcValidaIDConta;
-    int codOperacao, verificaConta;
-    float valorSaque, valorDeposito;
+    int codOperacao, verificaConta, verificaContaRecebe;
+    float valorSaque, valorDeposito, valorTrasferencia;
 
     for (int i = 0; i < 2; i++)
     {
@@ -140,6 +179,31 @@ int main()
                         printf("Conta nao identificada, digite novamente o ID:\n");
                         scanf("%d", &verificaConta);
                     }
+                }
+            } while (!opcValidaIDConta);
+        }
+        else if(codOperacao == 3)
+        {
+            opcValidaIDConta = 1;
+
+            do
+            {
+                printf("Digite o ID da conta que deseja fazer a transferencia:\n");
+                scanf("%d", &verificaConta);
+
+                printf("Digite o ID da conta que recebera o valor da tranferencia:\n");
+                scanf("%d", &verificaContaRecebe);
+
+                for (int i = 0; i < 2; i++)
+                {
+                    if (verificaConta == BANCO[i].id_conta && verificaContaRecebe == BANCO[i].id_conta)
+                    {
+                        printf("Digite o valor da transferencia:\n");
+                        scanf("%f", &valorTrasferencia);
+
+                        opcValidaIDConta = saldoTranferencia();
+                    }
+                    
                 }
             } while (!opcValidaIDConta);
         }
