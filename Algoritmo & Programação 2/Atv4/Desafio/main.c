@@ -7,24 +7,58 @@ struct BANCO
     float saldo_conta;
 }BANCO[2];
 
-float saldoSaque(float saldo, float valor_saque)
+float saldoSaque(int id_saque, float valor_saque)
 {
-    if (saldo < valor_saque)
+    int idSaque = -1;
+
+    for (int i = 0; i < 2; i++)
+    {
+        if (BANCO[i].id_conta == id_saque)
+        {
+            idSaque = i;
+        }
+    }
+
+    if (idSaque == -1)
+    {
+        printf("Conta nao identificada!\n");
+        return 0;
+    }
+
+    if (BANCO[idSaque].saldo_conta < valor_saque)
     {
         printf("Saldo Insuficiente!\n");
-        return saldo;
+        return 0;
     }
-    else
-    {
-        printf("Saque realizado com sucesso!\n");
-        return saldo - valor_saque;
-    }
+
+    BANCO[idSaque].saldo_conta -= valor_saque;
+
+    printf("Saque de R$%.2f realizado com sucesso!\n", valor_saque);
+    return 1;
 }
 
-float saldoDeposito(float saldo, float valor_deposito)
+float saldoDeposito(int id_deposito, float valor_deposito)
 {
-    printf("Deposito realizado com sucesso!\n");
-    return saldo + valor_deposito;
+    int idDeposito = -1;
+
+    for (int i = 0; i < 2; i++)
+    {
+        if (BANCO[i].id_conta == id_deposito)
+        {
+            idDeposito = i;
+        }
+    }
+
+    if (idDeposito == -1)
+    {
+        printf("Conta nao identificada!\n");
+        return 0;
+    }
+
+    BANCO[idDeposito].saldo_conta += valor_deposito;
+    
+    printf("Deposito de R$%.2f reaizado com sucesso!\n", valor_deposito);
+    return 1;
 }
 
 int saldoTranferencia(int id_origem, int id_destino, float valor_transferencia)
@@ -50,7 +84,7 @@ int saldoTranferencia(int id_origem, int id_destino, float valor_transferencia)
     }
     if (idDestino == -1)
     {
-         printf("Conta de destino nao identificada!\n");
+        printf("Conta de destino nao identificada!\n");
         return 0;
     }
     if (BANCO[idOrigem].saldo_conta < valor_transferencia)
@@ -112,77 +146,51 @@ int main()
 
         if(codOperacao == 1)
         {
-            printf("Informe o ID conta que deseja realizar o saque:\n");
-            scanf("%d", &verificaConta);
-
+            opcValidaIDConta = 0;
             do
             {
-                opcValidaIDConta = 0;
+                printf("Informe o ID conta que deseja realizar o saque:\n");
+                scanf("%d", &verificaConta);
 
-                for (int i = 0; i < 2; i++)
+                printf("Informe o valor do saque: ");
+                scanf("%f", &valorSaque);
+
+                opcValidaIDConta = saldoSaque(verificaConta, valorSaque);
+                if (opcValidaIDConta)
                 {
-                    if (verificaConta == BANCO[i].id_conta)
+                    printf("\nInformacoes atualizadas das contas:");
+                    for (int i = 0; i < 2; i++)
                     {
                         visualizaConta(BANCO[i].id_conta, BANCO[i].nome_proprietario, BANCO[i].saldo_conta);
-
-                        printf("Informe o valor do saque: ");
-                        scanf("%f", &valorSaque);
-
-                        BANCO[i].saldo_conta -= saldoSaque(BANCO[i].saldo_conta, valorSaque);
-
-                        printf("Saldo atualizado da conta: R$%.2f\n", BANCO[i].saldo_conta);
-
-                        opcValidaIDConta = 1;
-                        break;
                     }
-                }
-
-                if(!opcValidaIDConta)
-                {
-                    printf("Conta nao identificada, digite novamente o ID:\n");
-                    scanf("%d", &verificaConta);
                 }
             } while (!opcValidaIDConta);
         }
         else if(codOperacao == 2)
         {
-            opcValidaIDConta = 0;
-
+            opcValidaIDConta = 1;
             do
             {
                 printf("Informe o ID da conta que deseja fazer o deposito:\n");
                 scanf("%d", &verificaConta);
 
-                for (int i = 0; i < 2; i++)
+                printf("Informe o valor do deposito:\n");
+                scanf("%f", &valorDeposito);
+                        
+                opcValidaIDConta = saldoDeposito(verificaConta, valorDeposito);
+                if (opcValidaIDConta)
                 {
-                    if (verificaConta == BANCO[i].id_conta)
+                    printf("\nInformacoes atualizadas das contas:");
+                    for (int i = 0; i < 2; i++)
                     {
                         visualizaConta(BANCO[i].id_conta, BANCO[i].nome_proprietario, BANCO[i].saldo_conta);
-
-                        printf("Informe o valor do deposito:\n");
-                        scanf("%f", &valorDeposito);
-                        
-                        BANCO[i].saldo_conta += saldoDeposito(BANCO[i].saldo_conta, valorSaque);
-
-                        printf("Saldo atualizado da conta: R$%.2f\n", BANCO[i].saldo_conta);
-
-                        opcValidaIDConta = 1;
-                        break;
                     }
-
-                    if(!opcValidaIDConta)
-                    {
-                        printf("Conta nao identificada ou senha incorreta, digite novamente o ID:\n");
-                        scanf("%d", &verificaConta);
-                    }
-                    
-                }
+                }  
             } while (!opcValidaIDConta);
         }
         else if(codOperacao == 3)
         {
             opcValidaIDConta = 1;
-
             do
             {
                 printf("Digite o ID da conta que deseja fazer a transferencia:\n");
@@ -210,6 +218,5 @@ int main()
             opcValida = 0;
             printf("Operacao invalida, tente novamente.\n");
         }
-
     } while (!opcValida);
 }
