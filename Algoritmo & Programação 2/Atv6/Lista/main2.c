@@ -1,9 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
 #include "lib/ex2.h"
 
 int main() {
-
     char senha[50], carac;
     int tam;
 
@@ -13,9 +13,9 @@ int main() {
     printf("Digite um caractere: \n");
     scanf(" %c", &carac);
 
-    printf("Digite um tamanho: \n");
-    scanf("%d", &tam);
+    tam = strlen(senha);
 
-    crip(&senha, carac, tam);
-
+    printf("Senha sem alteracoes: %s\n", senha);
+    crip(senha, carac, tam);
+    printf("Senha criptografada: %s", senha);
 }
