@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "lib/ex5.h"
 
+//Atividade 5
+
 int main() {
     int num[8] = {8, 17, 12, 15, 18, 20, 24, 25};
 

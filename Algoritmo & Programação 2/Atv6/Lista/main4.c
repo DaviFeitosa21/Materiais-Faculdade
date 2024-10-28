@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "lib/ex4.h"
 
+//Atividade 4
+
 int main() {
     float num[3];
 

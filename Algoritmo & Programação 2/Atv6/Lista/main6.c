@@ -3,6 +3,8 @@ int LINHAS = 2;
 int COLUNAS = 3;
 #include "lib/ex6.h"
 
+//Atividade 6
+
 int main() {
     int matriz[2][3] = {
         {1, 2, 3},

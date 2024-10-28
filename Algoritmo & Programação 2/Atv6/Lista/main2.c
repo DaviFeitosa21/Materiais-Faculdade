@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include "lib/ex2.h"
 
+//Atividade 2
+
 int main() {
     char senha[50], carac;
     int tam;

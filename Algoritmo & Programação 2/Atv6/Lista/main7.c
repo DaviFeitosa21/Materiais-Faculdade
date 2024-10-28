@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//Atividade 7
+
 typedef struct ESTUDANTE {
     char nome[30];
     int idade;

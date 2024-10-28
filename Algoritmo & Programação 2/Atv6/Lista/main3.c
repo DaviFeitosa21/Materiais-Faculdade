@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "lib/ex3.h"
 
+//Atividade 3
+
 int main() {
     char frase[50];
 

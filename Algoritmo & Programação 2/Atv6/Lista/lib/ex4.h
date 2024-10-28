@@ -1,6 +1,8 @@
 #ifndef ex4
 #define ex4
 
+//Atividade 4
+
 void ord_num(float *num) {
     for (int i = 0; i < 3 - 1; i++) {
         for (int j = 0; j < 3 - i - 1; j++) {
