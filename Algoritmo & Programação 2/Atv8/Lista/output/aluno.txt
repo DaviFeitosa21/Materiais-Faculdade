@@ -1,21 +1,17 @@
 
 =========================================================
-Matricula do aluno: 12345
+Matricula do aluno: 9403
 Nome do aluno: davi
 Curso do aluno: computacao
-Nota 1: 7.60, Nota 2: 8.30
+Nota 1: 5.60, Nota 2: 8.40
 =========================================================
 
 =========================================================
-Matricula do aluno: 12345
-Nome do aluno: marcos
-Curso do aluno: culinaria
-Nota 1: 7.80, Nota 2: 4.70
 =========================================================
 
 =========================================================
-Matricula do aluno: 8329
-Nome do aluno: marcos
-Curso do aluno: culinaria
-Nota 1: 7.60, Nota 2: 8.60
+Matricula do aluno: 3414
+Nome do aluno: Marcos
+Curso do aluno: piano
+Nota 1: 7.50, Nota 2: 6.40
 =========================================================
